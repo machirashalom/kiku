@@ -86,6 +86,8 @@ function renderProductDetail() {
   const id = parseInt(params.get("id"));
   const product = products.find(p => p.id === id) || products[0];
 
+  document.title = product.name + " — Kiku Studio";
+
   container.innerHTML = `
     <div class="product-detail-image">
       <img src="${product.img}" alt="${product.name}" />
@@ -116,7 +118,7 @@ function renderProductDetail() {
 
       <p style="margin-top:20px; text-align:center;">
         Or chat with us directly:
-        <a href="https://wa.me/254741205945?text=Hi,%20I'm%20interested%20in%20the%20${encodeURIComponent(product.name)}" target="_blank" style="color:#25D366; font-weight:bold;">💬 WhatsApp Now</a>
+        <a href="https://wa.me/254741205945?text=Hi,%20I%27m%20interested%20in%20the%20${encodeURIComponent(product.name)}" target="_blank" rel="noopener" style="color:#25D366; font-weight:bold;">💬 WhatsApp Now</a>
       </p>
     </div>
   `;
