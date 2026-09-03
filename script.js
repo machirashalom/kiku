@@ -1,35 +1,37 @@
 // ===== Product Data =====
+// PLACEHOLDER IMAGES: every img below is a local placeholder SVG.
+// Replace each one with a real photo of the actual product before launch.
 const products = [
   { id: 1, name: "L-Shaped Sofa", category: "sofas",
-    img: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600",
+    img: "images/sofa-placeholder.svg",
     description: "Corner sofa built to order. You choose the size, fabric and finish, and we build it at our Nairobi workshop.",
     features: ["Made to order", "Fabric and finish of your choice", "Delivered across Kenya"] },
   { id: 2, name: "3-Seater Sofa Set", category: "sofas",
-    img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600",
+    img: "images/sofa-placeholder.svg",
     description: "A standard 3-seater sofa set made to your size and fabric choice.",
     features: ["Made to order", "Fabric and finish of your choice", "Delivered across Kenya"] },
   { id: 3, name: "6x6 Bed", category: "beds",
-    img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600",
+    img: "images/bed-placeholder.svg",
     description: "Standard 6x6 bed built to order. Message us your town and we'll confirm the price and delivery cost.",
     features: ["Made to order", "Custom sizes on request", "Delivered across Kenya"] },
   { id: 4, name: "5x6 Bed", category: "beds",
-    img: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600",
+    img: "images/bed-placeholder.svg",
     description: "Standard 5x6 bed built to order with your choice of design and finish.",
     features: ["Made to order", "Custom sizes on request", "Delivered across Kenya"] },
   { id: 5, name: "6-Seater Dining Set", category: "dining",
-    img: "https://images.unsplash.com/photo-1604578762246-41134e37f9cc?w=600",
+    img: "images/dining-placeholder.svg",
     description: "Dining table with six seats, made to order. Ask us for the price for your town.",
     features: ["Made to order", "Table and seats built together", "Delivered across Kenya"] },
   { id: 6, name: "4-Seater Dining Set", category: "dining",
-    img: "https://images.unsplash.com/photo-1503602642458-232111445657?w=600",
+    img: "images/dining-placeholder.svg",
     description: "Compact dining set with four seats, made to your size and finish.",
     features: ["Made to order", "Table and seats built together", "Delivered across Kenya"] },
   { id: 7, name: "TV Stand", category: "tv-coffee",
-    img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600",
+    img: "images/tvstand-placeholder.svg",
     description: "TV stand built to fit your TV size and living room style.",
     features: ["Made to order", "Built to your TV size", "Delivered across Kenya"] },
   { id: 8, name: "Coffee Table", category: "tv-coffee",
-    img: "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?w=600",
+    img: "images/coffeetable-placeholder.svg",
     description: "Coffee table made to your size and finish.",
     features: ["Made to order", "Built to your size", "Delivered across Kenya"] },
 ];
@@ -43,10 +45,10 @@ function renderProducts(filter = "all") {
 
   grid.innerHTML = filtered.map(p => `
     <a href="product.html?id=${p.id}" class="product-card">
-      <img src="${p.img}" alt="${p.name}" loading="lazy" width="600" height="400" />
+      <img src="${p.img}" alt="${p.name} — real photo coming soon" loading="lazy" width="600" height="400" />
       <div class="product-info">
         <h3>${p.name}</h3>
-        <p class="product-wood">🪵 Made to order</p>
+        <p class="product-wood">Made to order</p>
         <p class="product-price">Price on WhatsApp</p>
         <span class="btn">View Details</span>
       </div>
@@ -95,14 +97,14 @@ function renderProductDetail() {
 
   container.innerHTML = `
     <div class="product-detail-image">
-      <img src="${product.img}" alt="${product.name}" loading="lazy" width="600" height="400" />
+      <img src="${product.img}" alt="${product.name} — real photo coming soon" loading="lazy" width="600" height="400" />
     </div>
     <div class="product-detail-info">
       <h1>${product.name}</h1>
       <p class="price">Price on WhatsApp</p>
       <p class="description">${product.description}</p>
       <ul class="product-features">
-        ${product.features.map(f => `<li>✓ ${f}</li>`).join("")}
+        ${product.features.map(f => `<li>${f}</li>`).join("")}
       </ul>
 
       <h3>Ask for a Price or Delivery Quote</h3>
@@ -143,6 +145,9 @@ if (menuToggle) {
 }
 
 // ===== Send Enquiries via WhatsApp (no backend required) =====
+// All enquiry forms (custom orders, contact, product pages) build a
+// pre-filled WhatsApp message from the entered fields and open WhatsApp.
+// No data is stored or sent anywhere else.
 const WHATSAPP_NUMBER = "254741205945";
 
 function submitToWhatsApp(e) {
@@ -157,9 +162,6 @@ function submitToWhatsApp(e) {
       const val = data.get(key);
       if (val) lines.push(key.charAt(0).toUpperCase() + key.slice(1).replace("_", " ") + ": " + val);
     });
-
-  const contactMethod = data.get("contact_method");
-  if (contactMethod) lines.push("Preferred Contact: " + contactMethod);
 
   const text = encodeURIComponent("Hello Kiku Studio,\n\n" + lines.join("\n"));
   window.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;

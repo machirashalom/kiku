@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#EFE8DD"/>
+  <rect x="24" y="24" width="1152" height="752" fill="none" stroke="#C9BCA8" stroke-width="3" stroke-dasharray="12 10"/>
+  <text x="600" y="395" font-family="Georgia, serif" font-size="44" fill="#8A7A66" text-anchor="middle">Photo coming soon</text>
+  <text x="600" y="455" font-family="Georgia, serif" font-size="26" fill="#A39481" text-anchor="middle">Replace with a real photo of the workshop before launch</text>
+</svg>

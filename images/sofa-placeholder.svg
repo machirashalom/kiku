@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <rect width="600" height="400" fill="#EFE8DD"/>
+  <rect x="14" y="14" width="572" height="372" fill="none" stroke="#C9BCA8" stroke-width="2" stroke-dasharray="10 8"/>
+  <text x="300" y="200" font-family="Georgia, serif" font-size="30" fill="#8A7A66" text-anchor="middle">Sofa photo coming soon</text>
+  <text x="300" y="238" font-family="Georgia, serif" font-size="18" fill="#A39481" text-anchor="middle">Replace with a real photo</text>
+</svg>
