@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Orders — Kiku Studio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">🌳 Kiku Studio</div>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="collections.html">Collections</a>
+      <a href="custom.html" class="active">Custom Orders</a>
+      <a href="about.html">About</a>
+      <a href="showroom.html">Showroom</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="contact.html" class="btn-nav">Enquire Now</a>
+  </header>
+
+  <section class="page-header">
+    <h1>Custom Orders</h1>
+    <p>Your vision, handcrafted to perfection</p>
+  </section>
+
+  <section class="custom-process">
+    <h2>How It Works</h2>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-number">1</div>
+        <h3>Share Your Vision</h3>
+        <p>Tell us what you dream of — style, dimensions, wood type, and inspiration photos.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">2</div>
+        <h3>Design & Quote</h3>
+        <p>Our team creates sketches and provides a detailed quote within 48 hours.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">3</div>
+        <h3>Handcrafted for You</h3>
+        <p>Master artisans build your piece from Mvule or Mahogany (2–6 weeks).</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">4</div>
+        <h3>Delivered to Your Door</h3>
+        <p>Safe nationwide delivery and setup, ready to enjoy for a lifetime.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="enquiry-section">
+    <h2>Request a Custom Piece</h2>
+    <p>Fill in the details below and we'll get back to you within 24 hours.</p>
+
+    <form class="enquiry-form" method="POST">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your Name *" required />
+        <input type="email" name="email" placeholder="Email Address *" required />
+      </div>
+
+      <div class="form-row">
+        <input type="tel" name="phone" placeholder="Phone Number *" required />
+        <input type="text" name="location" placeholder="Delivery Location *" required />
+      </div>
+
+      <select name="furniture_type" required>
+        <option value="">Select Furniture Type *</option>
+        <option>Sofa</option>
+        <option>Bed</option>
+        <option>Dining Table</option>
+        <option>Coffee Table</option>
+        <option>Stool</option>
+        <option>Other</option>
+      </select>
+
+      <select name="wood_type" required>
+        <option value="">Preferred Wood *</option>
+        <option>Mvule</option>
+        <option>Mahogany</option>
+        <option>Not sure — recommend for me</option>
+      </select>
+
+      <input type="text" name="dimensions" placeholder="Approximate Dimensions (e.g., 2m x 1m)" />
+
+      <input type="text" name="budget" placeholder="Budget Range (optional)" />
+
+      <textarea name="details" placeholder="Describe your dream piece — style, colors, features, inspiration..." rows="5" required></textarea>
+
+      <select name="contact_method">
+        <option value="">Preferred Contact Method</option>
+        <option>WhatsApp</option>
+        <option>Phone Call</option>
+        <option>Email</option>
+      </select>
+
+      <button type="submit" class="btn">Submit Custom Enquiry</button>
+      <p class="form-note">Submitting this form opens WhatsApp with your details pre-filled for a fast reply.</p>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h4>🌳 Kiku Studio</h4>
+        <p>Handmade hardwood furniture.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>📞 +254 741 205 945</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Kiku Studio.</div>
+  </footer>
+
+  <a href="https://wa.me/254741205945" target="_blank" class="whatsapp-float">💬</a>
+</body>
+</html>
