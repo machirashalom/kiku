@@ -4,16 +4,25 @@
   <meta charset="UTF-8" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B3%3C/text%3E%3C/svg%3E" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Visit the Kiku Studio showroom in Nairobi to experience our handcrafted hardwood furniture in person." />
+  <meta name="description" content="Visit the Kiku Studio showroom on Getathuru Road, Nairobi. See furniture in person, or get a price and delivery quote on WhatsApp." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kiku Studio" />
+  <meta property="og:title" content="Showroom — Kiku Studio" />
+  <meta property="og:description" content="Visit our showroom on Getathuru Road, Nairobi — or get a price and delivery quote on WhatsApp." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200" />
+  <meta property="og:url" content="https://machirashalom.github.io/kiku/showroom.html" />
+  <link rel="preconnect" href="https://images.unsplash.com" />
   <title>Showroom — Kiku Studio</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+  <a class="skip-link" href="#content">Skip to content</a>
+
   <header>
     <a href="index.html" class="logo">🌳 Kiku Studio</a>
-    <button type="button" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-    <nav>
+    <button type="button" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">☰</button>
+    <nav id="site-nav">
       <a href="index.html">Home</a>
       <a href="collections.html">Collections</a>
       <a href="custom.html">Custom Orders</a>
@@ -21,41 +30,45 @@
       <a href="showroom.html" class="active">Showroom</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <a href="contact.html" class="btn-nav">Enquire Now</a>
+    <a href="https://wa.me/254741205945?text=Hello%20Kiku%20Studio,%20I%27d%20like%20to%20enquire%20about%20furniture." target="_blank" rel="noopener" class="btn-nav">Chat on WhatsApp</a>
   </header>
 
-  <section class="page-header">
-    <h1>Visit Our Showroom</h1>
-    <p>Experience the craftsmanship in person</p>
-  </section>
+  <main id="content">
 
-  <section class="showroom-info">
-    <div class="showroom-details">
-      <h2>Come See, Touch, and Feel</h2>
-      <p>Photos can only tell so much. Visit our showroom to experience the beauty of our handcrafted pieces up close. Our team will guide you through our collections and discuss custom options.</p>
+    <section class="page-header">
+      <h1>Visit Our Showroom</h1>
+      <p>See the furniture in person — or message us for photos and prices</p>
+    </section>
 
-      <h3>📍 Location</h3>
-      <p>Getathuru Road<br />Nairobi, Kenya</p>
+    <section class="showroom-info">
+      <div class="showroom-details">
+        <h2>Come See What We Make</h2>
+        <p>Photos help, but nothing beats seeing and sitting on the furniture yourself. Visit our showroom to look at our work, feel the finish and talk through your order with us.</p>
 
-      <h3>🕐 Opening Hours</h3>
-      <p>Monday – Saturday: 9:00 AM – 6:00 PM<br />Sunday: 10:00 AM – 4:00 PM</p>
+        <h3>📍 Location</h3>
+        <p>Getathuru Road<br />Nairobi, Kenya</p>
 
-      <h3>📞 Book Ahead (Recommended)</h3>
-      <p>Call us: <strong>+254 741 205 945</strong><br />
-      Or WhatsApp: <a href="https://wa.me/254741205945">Chat with us</a></p>
+        <h3>🕐 Opening Hours</h3>
+        <p>We're open daily — call or WhatsApp us to confirm today's hours before you come.</p>
 
-      <a href="contact.html" class="btn">Book a Visit</a>
-    </div>
-    <div class="showroom-image">
-      <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800" alt="Showroom" />
-    </div>
-  </section>
+        <h3>📞 Book Ahead (Recommended)</h3>
+        <p>Call us: <strong>+254 741 205 945</strong><br />
+        Or WhatsApp: <a href="https://wa.me/254741205945?text=Hello%20Kiku%20Studio,%20I%27d%20like%20to%20visit%20the%20showroom." target="_blank" rel="noopener">Chat with us</a></p>
+
+        <a href="https://wa.me/254741205945?text=Hello%20Kiku%20Studio,%20I%27d%20like%20to%20book%20a%20showroom%20visit." target="_blank" rel="noopener" class="btn">Book a Visit on WhatsApp</a>
+      </div>
+      <div class="showroom-image">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800" alt="Inside the Kiku Studio showroom" loading="lazy" width="800" height="600" />
+      </div>
+    </section>
+
+  </main>
 
   <footer>
     <div class="footer-content">
       <div>
         <h4>🌳 Kiku Studio</h4>
-        <p>Handmade hardwood furniture. Built to last generations.</p>
+        <p>Furniture made to order in Nairobi. Delivered across Kenya.</p>
       </div>
       <div>
         <h4>Quick Links</h4>
@@ -66,15 +79,18 @@
       </div>
       <div>
         <h4>Contact</h4>
+        <p>📍 Getathuru Road, Nairobi</p>
         <p>📞 +254 741 205 945</p>
-        <p>💬 WhatsApp us</p>
+        <a href="https://wa.me/254741205945" target="_blank" rel="noopener">💬 WhatsApp us</a>
         <p>📧 machirashalom@gmail.com</p>
       </div>
     </div>
     <div class="footer-bottom">© 2026 Kiku Studio. All rights reserved.</div>
   </footer>
 
-  <a href="https://wa.me/254741205945" target="_blank" rel="noopener" class="whatsapp-float" title="Chat on WhatsApp">💬</a>
+  <a href="https://wa.me/254741205945" target="_blank" rel="noopener" class="whatsapp-float" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 
   <script src="script.js"></script>
 </body>

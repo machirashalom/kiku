@@ -4,16 +4,25 @@
   <meta charset="UTF-8" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B3%3C/text%3E%3C/svg%3E" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Order custom hardwood furniture from Kiku Studio — your design, dimensions, and choice of Mvule or Mahogany, handcrafted to perfection." />
+  <meta name="description" content="Order made-to-measure furniture from Kiku Studio — your design and size, built in Nairobi and delivered across Kenya." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kiku Studio" />
+  <meta property="og:title" content="Custom Orders — Kiku Studio" />
+  <meta property="og:description" content="Tell us what you need — we'll confirm the price and delivery on WhatsApp, then build it for you." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1611145434336-2324aa4079ce?w=1200" />
+  <meta property="og:url" content="https://machirashalom.github.io/kiku/custom.html" />
+  <link rel="preconnect" href="https://images.unsplash.com" />
   <title>Custom Orders — Kiku Studio</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+  <a class="skip-link" href="#content">Skip to content</a>
+
   <header>
     <a href="index.html" class="logo">🌳 Kiku Studio</a>
-    <button type="button" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-    <nav>
+    <button type="button" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">☰</button>
+    <nav id="site-nav">
       <a href="index.html">Home</a>
       <a href="collections.html">Collections</a>
       <a href="custom.html" class="active">Custom Orders</a>
@@ -21,95 +30,92 @@
       <a href="showroom.html">Showroom</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <a href="contact.html" class="btn-nav">Enquire Now</a>
+    <a href="https://wa.me/254741205945?text=Hello%20Kiku%20Studio,%20I%27d%20like%20to%20enquire%20about%20furniture." target="_blank" rel="noopener" class="btn-nav">Chat on WhatsApp</a>
   </header>
 
-  <section class="page-header">
-    <h1>Custom Orders</h1>
-    <p>Your vision, handcrafted to perfection</p>
-  </section>
+  <main id="content">
 
-  <section class="custom-process">
-    <h2>How It Works</h2>
-    <div class="process-grid">
-      <div class="process-step">
-        <div class="step-number">1</div>
-        <h3>Share Your Vision</h3>
-        <p>Tell us what you dream of — style, dimensions, wood type, and inspiration photos.</p>
+    <section class="page-header">
+      <h1>Custom Orders</h1>
+      <p>Your design, built to your size</p>
+    </section>
+
+    <section class="custom-process">
+      <h2>How It Works</h2>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <h3>Tell Us What You Need</h3>
+          <p>Send us the design, dimensions and a photo of what you have in mind.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <h3>We Confirm the Price</h3>
+          <p>We reply on WhatsApp with the price and delivery quote for your town — before you order.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <h3>We Build It</h3>
+          <p>Your piece is made to order at our Nairobi workshop. We confirm the build time when you order.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <h3>Delivered to Your Door</h3>
+          <p>Delivery across Kenya — cost and time confirmed for your destination.</p>
+        </div>
       </div>
-      <div class="process-step">
-        <div class="step-number">2</div>
-        <h3>Design & Quote</h3>
-        <p>Our team creates sketches and provides a detailed quote within 48 hours.</p>
-      </div>
-      <div class="process-step">
-        <div class="step-number">3</div>
-        <h3>Handcrafted for You</h3>
-        <p>Master artisans build your piece from Mvule or Mahogany (2–6 weeks).</p>
-      </div>
-      <div class="process-step">
-        <div class="step-number">4</div>
-        <h3>Delivered to Your Door</h3>
-        <p>Safe nationwide delivery and setup, ready to enjoy for a lifetime.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="enquiry-section">
-    <h2>Request a Custom Piece</h2>
-    <p>Fill in the details below and we'll get back to you within 24 hours.</p>
+    <section class="enquiry-section">
+      <h2>Request a Custom Piece</h2>
+      <p>Fill in the details below and we'll get back to you on WhatsApp.</p>
 
-    <form class="enquiry-form" method="POST">
-      <div class="form-row">
-        <input type="text" name="name" placeholder="Your Name *" required />
-        <input type="email" name="email" placeholder="Email Address *" required />
-      </div>
+      <form class="enquiry-form" method="POST">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your Name *" required />
+          <input type="tel" name="phone" placeholder="Phone Number *" required />
+        </div>
 
-      <div class="form-row">
-        <input type="tel" name="phone" placeholder="Phone Number *" required />
-        <input type="text" name="location" placeholder="Delivery Location *" required />
-      </div>
+        <div class="form-row">
+          <input type="text" name="location" placeholder="Your Town / Delivery Location *" required />
+          <input type="text" name="dimensions" placeholder="Approximate Size (e.g., 2m x 1m)" />
+        </div>
 
-      <select name="furniture_type" required>
-        <option value="">Select Furniture Type *</option>
-        <option>Sofa</option>
-        <option>Bed</option>
-        <option>Dining Table</option>
-        <option>Coffee Table</option>
-        <option>Stool</option>
-        <option>Other</option>
-      </select>
+        <select name="furniture_type" required>
+          <option value="">What do you want built? *</option>
+          <option>Sofa Set</option>
+          <option>L-Shaped Sofa</option>
+          <option>Bed</option>
+          <option>Dining Set</option>
+          <option>TV Stand</option>
+          <option>Coffee Table</option>
+          <option>Other</option>
+        </select>
 
-      <select name="wood_type" required>
-        <option value="">Preferred Wood *</option>
-        <option>Mvule</option>
-        <option>Mahogany</option>
-        <option>Not sure — recommend for me</option>
-      </select>
+        <select name="finish">
+          <option value="">Preferred Finish</option>
+          <option>Natural</option>
+          <option>Varnished</option>
+          <option>Painted</option>
+          <option>Not sure — advise me</option>
+        </select>
 
-      <input type="text" name="dimensions" placeholder="Approximate Dimensions (e.g., 2m x 1m)" />
+        <input type="text" name="budget" placeholder="Budget Range (optional)" />
 
-      <input type="text" name="budget" placeholder="Budget Range (optional)" />
+        <textarea name="details" placeholder="Describe what you want — style, colours, features, or a photo you saw..." rows="5" required></textarea>
 
-      <textarea name="details" placeholder="Describe your dream piece — style, colors, features, inspiration..." rows="5" required></textarea>
+        <button type="submit" class="btn">Send Custom Enquiry</button>
+        <p class="form-note">This opens WhatsApp with your details pre-filled. You can also send photos once the chat opens.</p>
+      </form>
+    </section>
 
-      <select name="contact_method">
-        <option value="">Preferred Contact Method</option>
-        <option>WhatsApp</option>
-        <option>Phone Call</option>
-        <option>Email</option>
-      </select>
-
-      <button type="submit" class="btn">Submit Custom Enquiry</button>
-      <p class="form-note">Submitting this form opens WhatsApp with your details pre-filled for a fast reply.</p>
-    </form>
-  </section>
+  </main>
 
   <footer>
     <div class="footer-content">
       <div>
         <h4>🌳 Kiku Studio</h4>
-        <p>Handmade hardwood furniture. Built to last generations.</p>
+        <p>Furniture made to order in Nairobi. Delivered across Kenya.</p>
       </div>
       <div>
         <h4>Quick Links</h4>
@@ -120,14 +126,19 @@
       </div>
       <div>
         <h4>Contact</h4>
+        <p>📍 Getathuru Road, Nairobi</p>
         <p>📞 +254 741 205 945</p>
-        <p>💬 WhatsApp us</p>
+        <a href="https://wa.me/254741205945" target="_blank" rel="noopener">💬 WhatsApp us</a>
         <p>📧 machirashalom@gmail.com</p>
       </div>
     </div>
     <div class="footer-bottom">© 2026 Kiku Studio. All rights reserved.</div>
   </footer>
 
-  <a href="https://wa.me/254741205945" target="_blank" rel="noopener" class="whatsapp-float">💬</a>
+  <a href="https://wa.me/254741205945" target="_blank" rel="noopener" class="whatsapp-float" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="script.js"></script>
 </body>
 </html>
