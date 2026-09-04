@@ -247,7 +247,10 @@ section h2 { text-align: center; font-size: 2.2rem; margin-bottom: 10px; color: 
 }
 .showroom-details h3 { margin-top: 20px; color: var(--primary-brown); }
 .showroom-details a:not(.btn) { color: var(--primary-brown); }
-.showroom-image img { border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.showroom-image img {
+  width: 100%; height: 100%; min-height: 360px; object-fit: cover;
+  border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
 
 /* ===== Contact Options ===== */
 .contact-options {
@@ -331,10 +334,10 @@ footer { background: var(--dark-brown); color: white; padding: 50px 50px 20px; }
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 .wood-card img {
-  width: 100%; height: 150px; object-fit: cover; display: block;
+  width: 100%; height: 160px; object-fit: cover; display: block;
 }
-.wood-card img.wood-mvule { object-position: left center; }
-.wood-card img.wood-mahogany { object-position: right center; }
+.wood-card img.wood-mvule { object-position: center; }
+.wood-card img.wood-mahogany { object-position: center; }
 .wood-card-body { padding: 28px 30px 32px; }
 .wood-card h3 { color: var(--primary-brown); margin-bottom: 12px; }
 .wood-card p { color: var(--muted-text); }
@@ -449,9 +452,13 @@ footer { background: var(--dark-brown); color: white; padding: 50px 50px 20px; }
   .hero { height: auto; min-height: 480px; }
   .hero h1 { font-size: 2rem; }
   .hero p { font-size: 1rem; }
-  .about-preview, .about-full, .showroom-info, .product-detail {
+  .about-preview, .about-full, .showroom-info, .product-detail, .contact-trust {
     grid-template-columns: 1fr; padding: 40px 20px; gap: 30px;
   }
+  .custom-visual { padding: 24px 20px 0; }
+  .custom-visual img { height: 200px; }
+  .contact-trust { padding: 10px 20px 24px; }
+  .contact-trust-image img { height: 240px; }
   .categories, .products, .usp, .custom-process,
   .enquiry-section, .cta-banner, .contact-options, .delivery-info,
   .trust-bar, .wood-section, .faq-section, .final-cta, .testimonials {
@@ -460,3 +467,33 @@ footer { background: var(--dark-brown); color: white; padding: 50px 50px 20px; }
   .form-row { grid-template-columns: 1fr; }
   .enquiry-form { padding: 25px; }
 }
+
+/* ===== Custom page visual strip ===== */
+.custom-visual {
+  padding: 40px 50px 0; background: var(--cream-bg);
+}
+.custom-visual figure {
+  margin: 0; border-radius: 8px; overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); position: relative;
+}
+.custom-visual img {
+  width: 100%; height: 280px; object-fit: cover; display: block;
+}
+.custom-visual figcaption {
+  position: absolute; left: 20px; bottom: 18px;
+  background: rgba(61,47,36,0.82); color: #fff;
+  padding: 8px 16px; border-radius: 4px; font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ===== Contact trust / visual row ===== */
+.contact-trust {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: center; padding: 20px 50px 40px;
+}
+.contact-trust-image img {
+  width: 100%; height: 320px; object-fit: cover;
+  border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.contact-trust-copy h2 { text-align: left; margin-bottom: 14px; }
+.contact-trust-copy p { color: var(--muted-text); }

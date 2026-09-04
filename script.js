@@ -2,7 +2,7 @@
 // Product images (stock/temporary until real Kiku product photos).
 const products = [
   { id: 1, name: "Mvule L-Shaped Sofa", category: "sofas", wood: "Mvule",
-    img: "images/sofa.jpg",
+    img: "images/sofa-l.jpg",
     description: "Corner sofa built to order from solid Mvule. You choose the size, fabric and finish, and we build it at our Nairobi workshop.",
     features: ["Solid Mvule frame", "Fabric and finish of your choice", "Made to order", "Delivered across Kenya"] },
   { id: 2, name: "Mahogany 3-Seater Sofa Set", category: "sofas", wood: "Mahogany",
@@ -14,11 +14,11 @@ const products = [
     description: "Standard 6x6 bed built to order from solid Mvule. Message us your town and we'll confirm the price and delivery cost.",
     features: ["Solid Mvule construction", "Custom sizes on request", "Made to order", "Delivered across Kenya"] },
   { id: 4, name: "Mahogany 5x6 Bed", category: "beds", wood: "Mahogany",
-    img: "images/bed.jpg",
+    img: "images/bed-2.jpg",
     description: "Standard 5x6 bed in rich Mahogany, built to order with your choice of design and finish.",
     features: ["Solid Mahogany construction", "Custom sizes on request", "Made to order", "Delivered across Kenya"] },
   { id: 5, name: "Mahogany 6-Seater Dining Set", category: "dining", wood: "Mahogany",
-    img: "images/dining.jpg",
+    img: "images/dining-2.jpg",
     description: "Dining table with six seats in premium Mahogany, made to order. Ask us for the price for your town.",
     features: ["Solid Mahogany", "Table and seats built together", "Made to order", "Delivered across Kenya"] },
   { id: 6, name: "Mvule 4-Seater Dining Set", category: "dining", wood: "Mvule",
@@ -30,7 +30,7 @@ const products = [
     description: "TV stand in premium Mahogany, built to fit your TV size and living room style.",
     features: ["Solid Mahogany", "Built to your TV size", "Made to order", "Delivered across Kenya"] },
   { id: 8, name: "Mvule Coffee Table", category: "tv-coffee", wood: "Mvule",
-    img: "images/tvstand.jpg",
+    img: "images/coffee.jpg",
     description: "Coffee table in solid Mvule, made to your size and finish.",
     features: ["Solid Mvule", "Built to your size", "Made to order", "Delivered across Kenya"] },
 ];

@@ -1,21 +1,17 @@
-Temporary Unsplash stock for Kiku Studio — replace with real photos ASAP.
-License: https://unsplash.com/license (free commercial use).
+Temporary stock photos for Kiku Studio — replace with real workshop/product photos ASAP.
+License: Pexels License + Unsplash License (free commercial use). These are NOT Kiku's own pieces.
 
-Swap map (files are already in images/):
-  hero.jpg          → styles.css .hero and .cta-banner backgrounds; og:image
-  sofa.jpg          → sofa-placeholder.svg
-  bed.jpg           → bed-placeholder.svg
-  dining.jpg        → dining-placeholder.svg
-  tvstand.jpg       → tvstand-placeholder.svg
-  workshop.jpg      → workshop-photo-placeholder.svg
-  wood-grain.jpg    → optional for Why Mvule/Mahogany
-  og-share.jpg      → 1200x630 share preview (og:image)
+Photo selection rationale (wood-first for a Mvule & Mahogany brand):
+- hero / og-share: rustic solid-wood dining with heavy grain (Pexels 2092058)
+- sofa: living room with prominent dark wood coffee table (Pexels 276551)
+- sofa-l: living space with wood-base seating + wood table (Pexels 2251247)
+- bed / bed-2: dark wood bed frames / hardwood bedroom (Unsplash bed + Pexels 164595)
+- dining / dining-2: light wood dining (Pexels 1080696) + solid wood joinery dining (Unsplash)
+- tvstand: living space with TV console (Pexels 210265) — temporary until real TV stand shot
+- coffee: round wood table + wood chair legs (Pexels 1350789)
+- workshop: traditional hand plane & chisels (Pexels 3637782)
+- wood-mvule / wood-mahogany: grain-forward wood closeups for the wood section
+- showroom: warm furnished sitting room (Pexels 276551)
 
-Sources (Unsplash):
-hero/og: photo-1618221195710-dd6b41faaea6
-sofa: photo-1555041469-a586c61ea9bc
-bed: photo-1505693416388-ac5ce068fe85
-dining: photo-1617806118233-18e1de247200
-tvstand: photo-1586023492125-27b2c045efd7
-workshop: photo-1452860606245-08befc0ff44b
-wood: photo-1538688525198-9b88f6f53126
+Rejected earlier stock that fought the brand: green velvet sofas, bathroom cabinets,
+flat-pack assembly shots, exterior architecture, gardening tools, pure fabric beds with no wood.
