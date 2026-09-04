@@ -1,37 +1,36 @@
 // ===== Product Data =====
-// PLACEHOLDER IMAGES: every img below is a local placeholder SVG.
-// Replace each one with a real photo of the actual product before launch.
+// Product images (stock/temporary until real Kiku product photos).
 const products = [
   { id: 1, name: "Mvule L-Shaped Sofa", category: "sofas", wood: "Mvule",
-    img: "images/sofa-placeholder.svg",
+    img: "images/sofa.jpg",
     description: "Corner sofa built to order from solid Mvule. You choose the size, fabric and finish, and we build it at our Nairobi workshop.",
     features: ["Solid Mvule frame", "Fabric and finish of your choice", "Made to order", "Delivered across Kenya"] },
   { id: 2, name: "Mahogany 3-Seater Sofa Set", category: "sofas", wood: "Mahogany",
-    img: "images/sofa-placeholder.svg",
+    img: "images/sofa.jpg",
     description: "A standard 3-seater sofa set in premium Mahogany, made to your size and fabric choice.",
     features: ["Solid Mahogany frame", "Fabric and finish of your choice", "Made to order", "Delivered across Kenya"] },
   { id: 3, name: "Mvule 6x6 Bed", category: "beds", wood: "Mvule",
-    img: "images/bed-placeholder.svg",
+    img: "images/bed.jpg",
     description: "Standard 6x6 bed built to order from solid Mvule. Message us your town and we'll confirm the price and delivery cost.",
     features: ["Solid Mvule construction", "Custom sizes on request", "Made to order", "Delivered across Kenya"] },
   { id: 4, name: "Mahogany 5x6 Bed", category: "beds", wood: "Mahogany",
-    img: "images/bed-placeholder.svg",
+    img: "images/bed.jpg",
     description: "Standard 5x6 bed in rich Mahogany, built to order with your choice of design and finish.",
     features: ["Solid Mahogany construction", "Custom sizes on request", "Made to order", "Delivered across Kenya"] },
   { id: 5, name: "Mahogany 6-Seater Dining Set", category: "dining", wood: "Mahogany",
-    img: "images/dining-placeholder.svg",
+    img: "images/dining.jpg",
     description: "Dining table with six seats in premium Mahogany, made to order. Ask us for the price for your town.",
     features: ["Solid Mahogany", "Table and seats built together", "Made to order", "Delivered across Kenya"] },
   { id: 6, name: "Mvule 4-Seater Dining Set", category: "dining", wood: "Mvule",
-    img: "images/dining-placeholder.svg",
+    img: "images/dining.jpg",
     description: "Compact dining set with four seats in solid Mvule, made to your size and finish.",
     features: ["Solid Mvule", "Table and seats built together", "Made to order", "Delivered across Kenya"] },
   { id: 7, name: "Mahogany TV Stand", category: "tv-coffee", wood: "Mahogany",
-    img: "images/tvstand-placeholder.svg",
+    img: "images/tvstand.jpg",
     description: "TV stand in premium Mahogany, built to fit your TV size and living room style.",
     features: ["Solid Mahogany", "Built to your TV size", "Made to order", "Delivered across Kenya"] },
   { id: 8, name: "Mvule Coffee Table", category: "tv-coffee", wood: "Mvule",
-    img: "images/coffeetable-placeholder.svg",
+    img: "images/tvstand.jpg",
     description: "Coffee table in solid Mvule, made to your size and finish.",
     features: ["Solid Mvule", "Built to your size", "Made to order", "Delivered across Kenya"] },
 ];
@@ -52,7 +51,7 @@ function renderProducts(filter = "all") {
 
   grid.innerHTML = filtered.map(p => `
     <a href="product.html?id=${p.id}" class="product-card">
-      <img src="${p.img}" alt="${p.name} — real photo coming soon" loading="lazy" width="600" height="400" />
+      <img src="${p.img}" alt="${p.name}" loading="lazy" width="600" height="400" />
       <div class="product-info">
         <span class="product-category">${CATEGORY_NAMES[p.category]}</span>
         <h3>${p.name}</h3>
@@ -109,7 +108,7 @@ function renderProductDetail() {
 
   container.innerHTML = `
     <div class="product-detail-image">
-      <img src="${product.img}" alt="${product.name} — real photo coming soon" loading="lazy" width="600" height="400" />
+      <img src="${product.img}" alt="${product.name}" loading="lazy" width="600" height="400" />
     </div>
     <div class="product-detail-info">
       <span class="product-category">${CATEGORY_NAMES[product.category]}</span>

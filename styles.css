@@ -1,6 +1,8 @@
 /* ===== Premium rustic hardwood showroom aesthetic =====
    Palette: #6b3410 primary brown · #3d2f24 dark wood · #faf7f2 cream
    #f0e8dd warm beige · #d4a017 gold · #25D366 WhatsApp green */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
   --primary-brown: #6b3410;
   --primary-brown-hover: #4d240a;
@@ -10,12 +12,18 @@
   --white: #ffffff;
   --gold: #d4a017;
   --whatsapp-green: #25D366;
-  --muted-text: #7a6659;
+  --muted-text: #5c4a3d;
 }
 
 /* ===== Reset ===== */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Georgia', 'Times New Roman', serif; }
-body { background: var(--cream-bg); color: var(--dark-brown); line-height: 1.6; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--cream-bg); color: var(--dark-brown); line-height: 1.6;
+}
+h1, h2, h3, h4, .logo {
+  font-family: Georgia, 'Times New Roman', serif;
+}
 img { max-width: 100%; display: block; }
 
 /* ===== Skip Link ===== */
@@ -72,9 +80,9 @@ nav a:hover, nav a.active { color: var(--primary-brown); }
 
 /* ===== Hero ===== */
 .hero {
-  height: 90vh; min-height: 560px;
+  height: 70vh; min-height: 480px;
   background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-    url('images/hero-placeholder.svg') center/cover;
+    url('images/hero.jpg') center/cover;
   display: flex; align-items: center; justify-content: center;
   color: white; text-align: center; padding: 0 20px;
 }
@@ -97,7 +105,7 @@ section h2 { text-align: center; font-size: 2.2rem; margin-bottom: 10px; color: 
 .section-subtitle { text-align: center; color: var(--muted-text); margin-bottom: 40px; }
 
 /* ===== Categories ===== */
-.categories { padding: 80px 50px; }
+.categories { padding: 64px 50px; }
 .category-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
@@ -118,7 +126,7 @@ section h2 { text-align: center; font-size: 2.2rem; margin-bottom: 10px; color: 
 /* ===== About Preview ===== */
 .about-preview, .about-full {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 60px; align-items: center; padding: 80px 50px; background: var(--white);
+  gap: 60px; align-items: center; padding: 64px 50px; background: var(--white);
 }
 .about-image img { border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 .about-text h2 { text-align: left; margin-bottom: 20px; }
@@ -135,7 +143,7 @@ section h2 { text-align: center; font-size: 2.2rem; margin-bottom: 10px; color: 
 /* ===== CTA Banner ===== */
 .cta-banner {
   background: linear-gradient(rgba(107,52,16,0.9), rgba(107,52,16,0.9)),
-    url('images/hero-placeholder.svg') center/cover;
+    url('images/hero.jpg') center/cover;
   padding: 80px 50px; text-align: center; color: white;
 }
 .cta-banner h2 { color: white; margin-bottom: 15px; }
@@ -296,6 +304,7 @@ footer { background: var(--dark-brown); color: white; padding: 50px 50px 20px; }
   background: rgba(255,255,255,0.12);
   border: 1px solid rgba(255,255,255,0.4);
   color: white; padding: 8px 16px; border-radius: 30px; font-size: 0.9rem;
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 /* ===== Trust Bar ===== */
@@ -309,17 +318,48 @@ footer { background: var(--dark-brown); color: white; padding: 50px 50px 20px; }
 
 /* ===== Wood Section ===== */
 .wood-section {
-  padding: 80px 50px; background: var(--white); text-align: center;
+  padding: 64px 50px; background: var(--white); text-align: center;
 }
 .wood-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 30px; margin-top: 40px;
 }
 .wood-card {
-  background: var(--cream-bg); padding: 35px; border-radius: 8px;
+  background: var(--cream-bg); border-radius: 8px;
   border-left: 5px solid var(--primary-brown); text-align: left;
+  overflow: hidden; padding: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
+.wood-card img {
+  width: 100%; height: 150px; object-fit: cover; display: block;
+}
+.wood-card img.wood-mvule { object-position: left center; }
+.wood-card img.wood-mahogany { object-position: right center; }
+.wood-card-body { padding: 28px 30px 32px; }
 .wood-card h3 { color: var(--primary-brown); margin-bottom: 12px; }
+.wood-card p { color: var(--muted-text); }
+
+/* ===== Testimonials ===== */
+.testimonials {
+  padding: 64px 50px; background: var(--warm-beige); text-align: center;
+}
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px; max-width: 1100px; margin: 40px auto 0;
+}
+.testimonial-card {
+  background: var(--white); padding: 28px 24px; border-radius: 8px;
+  text-align: left; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border-top: 3px solid var(--primary-brown);
+}
+.testimonial-card blockquote {
+  font-style: italic; color: var(--dark-brown); margin-bottom: 16px;
+  font-size: 1rem; line-height: 1.55;
+}
+.testimonial-card cite {
+  display: block; font-style: normal; font-size: 0.9rem;
+  color: var(--muted-text); font-weight: 600;
+}
 
 /* ===== FAQ ===== */
 .faq-section {
@@ -354,7 +394,7 @@ footer { background: var(--dark-brown); color: white; padding: 50px 50px 20px; }
 .final-cta {
   padding: 90px 50px; text-align: center;
   background: linear-gradient(rgba(61,47,36,0.88), rgba(61,47,36,0.88)),
-    url('images/workshop-photo-placeholder.svg') center/cover;
+    url('images/workshop.jpg') center/cover;
   color: white;
 }
 .final-cta h2 { color: white; font-size: 2.4rem; margin-bottom: 15px; }
@@ -366,6 +406,7 @@ footer { background: var(--dark-brown); color: white; padding: 50px 50px 20px; }
   .mobile-contact-bar {
     display: grid; grid-template-columns: 1fr 1fr;
     position: fixed; bottom: 0; left: 0; width: 100%; z-index: 9999;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
   .mobile-contact-bar a {
     padding: 14px; text-align: center; text-decoration: none;
@@ -373,8 +414,20 @@ footer { background: var(--dark-brown); color: white; padding: 50px 50px 20px; }
   }
   .mobile-contact-bar a:first-child { background: var(--primary-brown); }
   .mobile-contact-bar a:last-child { background: var(--whatsapp-green); }
-  body { padding-bottom: 55px; }
-  .whatsapp-float { bottom: 70px; }
+  body {
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+  main, footer {
+    /* Extra clearance so last content / footer aren't hidden behind the bar */
+    scroll-margin-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+  footer {
+    padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+  }
+  .whatsapp-float {
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    right: 16px;
+  }
 }
 
 /* ===== Responsive ===== */
@@ -393,7 +446,7 @@ footer { background: var(--dark-brown); color: white; padding: 50px 50px 20px; }
   header.nav-open nav { display: flex; }
   nav a { margin: 0; padding: 10px 0; border-top: 1px solid #eee; width: 100%; font-size: 1rem; }
 
-  .hero { height: auto; min-height: 520px; }
+  .hero { height: auto; min-height: 480px; }
   .hero h1 { font-size: 2rem; }
   .hero p { font-size: 1rem; }
   .about-preview, .about-full, .showroom-info, .product-detail {
@@ -401,10 +454,9 @@ footer { background: var(--dark-brown); color: white; padding: 50px 50px 20px; }
   }
   .categories, .products, .usp, .custom-process,
   .enquiry-section, .cta-banner, .contact-options, .delivery-info,
-  .trust-bar, .wood-section, .faq-section, .final-cta {
+  .trust-bar, .wood-section, .faq-section, .final-cta, .testimonials {
     padding: 40px 20px;
   }
   .form-row { grid-template-columns: 1fr; }
   .enquiry-form { padding: 25px; }
-  .whatsapp-float { bottom: 20px; right: 20px; }
 }
