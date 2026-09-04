@@ -126,7 +126,7 @@ function renderProductDetail() {
 
       <h3 style="margin-top:28px;">Ask for a Price or Delivery Quote</h3>
       <p style="margin-bottom:10px;">Tell us your town — we'll confirm the price and delivery cost before you order.</p>
-      <form class="enquiry-form" id="product-enquiry" method="POST" style="padding:20px; margin-top:15px;">
+      <form class="enquiry-form" id="product-enquiry" method="POST">
         <input type="hidden" name="product" value="${product.name}" />
         <input type="text" name="name" placeholder="Your Name *" required />
         <input type="tel" name="phone" placeholder="Phone Number *" required />
@@ -147,7 +147,7 @@ if (menuToggle) {
     menuToggle.setAttribute("aria-expanded", open);
   });
 
-  document.querySelectorAll("header nav a").forEach(link => {
+  document.querySelectorAll("header nav a, #site-nav a").forEach(link => {
     link.addEventListener("click", () => {
       const header = menuToggle.closest("header");
       header.classList.remove("nav-open");
