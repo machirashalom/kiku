@@ -62,21 +62,45 @@
     </section>
 
     <section class="enquiry-section">
-      <h2>Send Us an Enquiry</h2>
+      <h2>Tell Us What You Want Built</h2>
       <p>Tell us what you need and where you are — we'll reply on WhatsApp with the price and delivery quote.</p>
       <form class="enquiry-form" id="enquiry-form" method="POST">
         <div class="form-row">
           <input type="text" name="name" placeholder="Your Name *" required />
-          <input type="tel" name="phone" placeholder="Phone Number *" required />
+          <input type="tel" name="phone" placeholder="Phone / WhatsApp Number *" required />
         </div>
         <div class="form-row">
           <input type="text" name="location" placeholder="Your Town / Delivery Location *" required />
-          <input type="text" name="subject" placeholder="What are you looking for? (e.g., 6x6 bed)" />
+          <select name="interest" required>
+            <option value="">What are you interested in? *</option>
+            <option>Sofa Set</option>
+            <option>L-Shaped Sofa</option>
+            <option>Bed</option>
+            <option>Dining Set</option>
+            <option>TV Stand</option>
+            <option>Coffee Table</option>
+            <option>Custom Furniture</option>
+          </select>
         </div>
-        <textarea name="message" placeholder="Your message *" rows="6" required></textarea>
-        <button type="submit" class="btn">Send Enquiry</button>
-        <p class="form-note">This opens WhatsApp with your message pre-filled. You can also send photos once the chat opens.</p>
+        <select name="wood">
+          <option value="">Preferred Wood</option>
+          <option>Mvule</option>
+          <option>Mahogany</option>
+          <option>Not sure — advise me</option>
+        </select>
+        <textarea name="message" placeholder="Tell us what you want built — sizes, style, colours..." rows="5" required></textarea>
+        <button type="submit" class="btn">Request a Quote</button>
+        <p class="form-note">This opens WhatsApp with your details pre-filled. You can also send photos once the chat opens.</p>
       </form>
+    </section>
+
+    <section class="final-cta">
+      <h2>Have a Piece in Mind?</h2>
+      <p>Send us your idea, dimensions, or a reference photo. We'll help you turn it into a handcrafted Mvule or Mahogany piece.</p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/254741205945?text=Hello%20Kiku%20Studio,%20I%20have%20a%20piece%20in%20mind..." target="_blank" rel="noopener" class="btn">WhatsApp Us</a>
+        <a href="tel:+254741205945" class="btn btn-outline">Call Now</a>
+      </div>
     </section>
 
   </main>
@@ -85,7 +109,7 @@
     <div class="footer-content">
       <div>
         <h4>Kiku Studio</h4>
-        <p>Furniture made to order in Nairobi. Delivered across Kenya.</p>
+        <p>Handmade Mvule &amp; Mahogany furniture. Made to order in Nairobi, delivered across Kenya.</p>
       </div>
       <div>
         <h4>Quick Links</h4>
@@ -108,6 +132,11 @@
   <a href="https://wa.me/254741205945" target="_blank" rel="noopener" class="whatsapp-float" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
+
+  <div class="mobile-contact-bar">
+    <a href="tel:+254741205945">Call Now</a>
+    <a href="https://wa.me/254741205945?text=Hello%20Kiku%20Studio,%20I%27d%20like%20to%20enquire%20about%20furniture." target="_blank" rel="noopener">WhatsApp</a>
+  </div>
 
   <script src="script.js"></script>
 </body>
