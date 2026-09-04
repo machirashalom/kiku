@@ -1,6 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
-  <rect width="600" height="400" fill="#EFE8DD"/>
-  <rect x="14" y="14" width="572" height="372" fill="none" stroke="#C9BCA8" stroke-width="2" stroke-dasharray="10 8"/>
-  <text x="300" y="200" font-family="Georgia, serif" font-size="30" fill="#8A7A66" text-anchor="middle">Dining set photo coming soon</text>
-  <text x="300" y="238" font-family="Georgia, serif" font-size="18" fill="#A39481" text-anchor="middle">Replace with a real photo</text>
+  <rect width="600" height="400" fill="#f0e8dd"/>
+  <rect x="0" y="330" width="600" height="70" fill="#e3d5bf"/>
+  <g stroke="#6b3410" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- table top -->
+    <path d="M60 160 h480 l-20 -18 H80 z"/>
+    <!-- legs -->
+    <path d="M120 178 v130 M480 178 v130"/>
+    <!-- chairs -->
+    <rect x="95" y="205" width="55" height="60" rx="8"/>
+    <path d="M105 265 v45 M135 265 v45"/>
+    <rect x="450" y="205" width="55" height="60" rx="8"/>
+    <path d="M460 265 v45 M490 265 v45"/>
+    <!-- chair backs -->
+    <path d="M105 205 v-60 q0 -12 12 -12 h20 q12 0 12 12 v60"/>
+    <path d="M460 205 v-60 q0 -12 12 -12 h20 q12 0 12 12 v60"/>
+  </g>
+  <g stroke="#c28a3e" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7">
+    <path d="M300 178 v130"/>
+  </g>
+  <text x="300" y="380" font-family="Georgia, serif" font-size="15" fill="#a08a6a" text-anchor="middle" letter-spacing="3">DINING SET PHOTO COMING SOON</text>
 </svg>
