@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <link rel="icon" href="favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#faf6ef" />
   <meta name="description" content="Contact Kiku Studio on WhatsApp, phone or email for furniture prices, delivery quotes and showroom visits." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kiku Studio" />
@@ -87,29 +88,46 @@
         <p>Tell us what you need and where you are — we'll reply on WhatsApp with the price and delivery quote.</p>
         <form class="enquiry-form" id="enquiry-form" method="POST">
           <div class="form-row">
-            <input type="text" name="name" placeholder="Your Name *" required />
-            <input type="tel" name="phone" placeholder="Phone / WhatsApp Number *" required />
+            <div class="field">
+              <label for="contact-name">Your Name *</label>
+              <input type="text" id="contact-name" name="name" placeholder="e.g. Amina Wanjiru…" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="contact-phone">Phone / WhatsApp Number *</label>
+              <input type="tel" id="contact-phone" name="phone" placeholder="e.g. 07XX XXX XXX…" autocomplete="tel" required />
+            </div>
           </div>
           <div class="form-row">
-            <input type="text" name="location" placeholder="Your Town / Delivery Location *" required />
-            <select name="interest" required>
-              <option value="">What are you interested in? *</option>
-              <option>Sofa Set</option>
-              <option>L-Shaped Sofa</option>
-              <option>Bed</option>
-              <option>Dining Set</option>
-              <option>TV Stand</option>
-              <option>Coffee Table</option>
-              <option>Custom Furniture</option>
+            <div class="field">
+              <label for="contact-location">Your Town / Delivery Location *</label>
+              <input type="text" id="contact-location" name="location" placeholder="e.g. Nakuru…" autocomplete="off" required />
+            </div>
+            <div class="field">
+              <label for="contact-interest">What are you interested in? *</label>
+              <select id="contact-interest" name="interest" required>
+                <option value="">Choose an option…</option>
+                <option>Sofa Set</option>
+                <option>L-Shaped Sofa</option>
+                <option>Bed</option>
+                <option>Dining Set</option>
+                <option>TV Stand</option>
+                <option>Coffee Table</option>
+                <option>Custom Furniture</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="contact-wood">Preferred Wood</label>
+            <select id="contact-wood" name="wood">
+              <option value="">Not sure — advise me</option>
+              <option>Mvule</option>
+              <option>Mahogany</option>
             </select>
           </div>
-          <select name="wood">
-            <option value="">Preferred Wood</option>
-            <option>Mvule</option>
-            <option>Mahogany</option>
-            <option>Not sure — advise me</option>
-          </select>
-          <textarea name="message" placeholder="Tell us what you want built — sizes, style, colours..." rows="5" required></textarea>
+          <div class="field">
+            <label for="contact-message">Tell us what you want built *</label>
+            <textarea id="contact-message" name="message" placeholder="Sizes, style, colours…" rows="5" required></textarea>
+          </div>
           <button type="submit" class="btn">Request a Quote</button>
           <p class="form-note">This opens WhatsApp with your details pre-filled. You can also send photos once the chat opens.</p>
         </form>
@@ -132,12 +150,12 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-content">
-        <div>
-          <h4>Kiku Studio</h4>
-          <p>Handmade Mvule &amp; Mahogany furniture. Made to order in Nairobi, delivered across Kenya.</p>
+        <div class="footer-brand">
+          <p class="footer-logo">Kiku<span class="logo-rest"> Studio</span></p>
+          <p>Handmade Mvule &amp; Mahogany furniture — made to order in Nairobi, delivered across Kenya.</p>
         </div>
         <div>
-          <h4>Quick Links</h4>
+          <h4>Explore</h4>
           <a href="collections.html">Collections</a>
           <a href="custom.html">Custom Orders</a>
           <a href="about.html">About Us</a>
@@ -145,13 +163,20 @@
         </div>
         <div>
           <h4>Contact</h4>
-          <p>Location: Getathuru Road, Nairobi</p>
-          <p>Phone: +254 741 205 945</p>
+          <a href="tel:+254741205945">+254 741 205 945</a>
           <a href="https://wa.me/254741205945" target="_blank" rel="noopener">WhatsApp us</a>
-          <p>Email: machirashalom@gmail.com</p>
+          <a href="mailto:machirashalom@gmail.com">machirashalom@gmail.com</a>
+        </div>
+        <div>
+          <h4>Visit</h4>
+          <p>Getathuru Road, Nairobi, Kenya</p>
+          <p>Visits by appointment — call or WhatsApp to arrange.</p>
         </div>
       </div>
-      <div class="footer-bottom">&copy; 2026 Kiku Studio. All rights reserved.</div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Kiku Studio. All rights reserved.</span>
+        <span class="footer-craft">Crafted in Nairobi</span>
+      </div>
     </div>
   </footer>
 

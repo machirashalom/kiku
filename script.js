@@ -36,10 +36,10 @@ const products = [
 ];
 
 const CATEGORY_NAMES = {
-  "sofas": "Sofa Collection",
-  "beds": "Bed Collection",
-  "dining": "Dining Collection",
-  "tv-coffee": "Living Room Collection",
+  "sofas": "Sofa collection",
+  "beds": "Bed collection",
+  "dining": "Dining collection",
+  "tv-coffee": "Living room collection",
 };
 
 // ===== Render Products (Collections Page) =====
@@ -55,24 +55,39 @@ function renderProducts(filter = "all") {
       <div class="product-info">
         <span class="product-category">${CATEGORY_NAMES[p.category]}</span>
         <h3>${p.name}</h3>
-        <p>${p.wood} hardwood, handmade at our Nairobi workshop.</p>
-        <div class="product-meta">
-          <span>${p.wood}</span>
-          <span>Custom Sizes</span>
-        </div>
+        <p class="product-wood">${p.wood} hardwood — made to order in Nairobi</p>
         <p class="product-price">Price on WhatsApp</p>
-        <span class="btn">View &amp; Enquire</span>
+        <span class="btn btn-quiet">View &amp; enquire</span>
       </div>
     </a>
   `).join("");
+
+  const count = document.getElementById("results-count");
+  if (count) {
+    count.textContent = `Showing ${filtered.length} of ${products.length} pieces`;
+  }
 }
 
 // ===== Filter Buttons =====
 document.querySelectorAll(".filter-btn").forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".filter-btn").forEach(b => {
+      b.classList.remove("active");
+      b.setAttribute("aria-pressed", "false");
+    });
     btn.classList.add("active");
-    renderProducts(btn.dataset.filter);
+    btn.setAttribute("aria-pressed", "true");
+
+    const filter = btn.dataset.filter;
+    const url = new URL(window.location.href);
+    if (filter === "all") {
+      url.searchParams.delete("cat");
+    } else {
+      url.searchParams.set("cat", filter);
+    }
+    window.history.replaceState(null, "", url);
+
+    renderProducts(filter);
   });
 });
 
@@ -111,6 +126,7 @@ function renderProductDetail() {
       <img src="${product.img}" alt="${product.name}" loading="lazy" width="600" height="400" />
     </div>
     <div class="product-detail-info">
+      <a href="collections.html" class="back-link">Back to collections</a>
       <span class="product-category">${CATEGORY_NAMES[product.category]}</span>
       <h1>${product.name}</h1>
       <p class="price">Price on WhatsApp</p>
@@ -124,14 +140,26 @@ function renderProductDetail() {
         <a href="tel:+254741205945" class="btn btn-outline-dark">Call Now</a>
       </div>
 
-      <h3 style="margin-top:28px;">Ask for a Price or Delivery Quote</h3>
-      <p style="margin-bottom:10px;">Tell us your town — we'll confirm the price and delivery cost before you order.</p>
       <form class="enquiry-form" id="product-enquiry" method="POST">
+        <h3>Ask for a price or delivery quote</h3>
+        <p class="form-intro">Tell us your town — we'll confirm the price and delivery cost before you order.</p>
         <input type="hidden" name="product" value="${product.name}" />
-        <input type="text" name="name" placeholder="Your Name *" required />
-        <input type="tel" name="phone" placeholder="Phone Number *" required />
-        <input type="text" name="location" placeholder="Your Town / Delivery Location *" required />
-        <textarea name="message" placeholder="Any questions? Sizes, fabric, colour..." rows="3"></textarea>
+        <div class="field">
+          <label for="pd-name">Your Name *</label>
+          <input type="text" id="pd-name" name="name" placeholder="e.g. Amina Wanjiru…" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="pd-phone">Phone Number *</label>
+          <input type="tel" id="pd-phone" name="phone" placeholder="e.g. 07XX XXX XXX…" autocomplete="tel" required />
+        </div>
+        <div class="field">
+          <label for="pd-location">Your Town / Delivery Location *</label>
+          <input type="text" id="pd-location" name="location" placeholder="e.g. Nakuru…" autocomplete="off" required />
+        </div>
+        <div class="field">
+          <label for="pd-message">Any questions?</label>
+          <textarea id="pd-message" name="message" placeholder="Sizes, fabric, colour…" rows="3"></textarea>
+        </div>
         <button type="submit" class="btn">Send Enquiry</button>
       </form>
     </div>
