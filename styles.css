@@ -1196,6 +1196,16 @@ header nav a.active::after {
   padding: 30px;
 }
 
+/* ===== Related products ===== */
+.related-products {
+  grid-column: 1 / -1;
+  margin-top: 16px;
+  padding-top: 56px;
+  border-top: 1px solid var(--line);
+}
+
+.related-products h2 { margin-bottom: 32px; }
+
 .product-detail-info .enquiry-form h3 {
   font-family: var(--font-serif);
   font-weight: 600;

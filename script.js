@@ -43,13 +43,8 @@ const CATEGORY_NAMES = {
 };
 
 // ===== Render Products (Collections Page) =====
-function renderProducts(filter = "all") {
-  const grid = document.getElementById("product-grid");
-  if (!grid) return;
-
-  const filtered = filter === "all" ? products : products.filter(p => p.category === filter);
-
-  grid.innerHTML = filtered.map(p => `
+function productCard(p) {
+  return `
     <a href="product.html?id=${p.id}" class="product-card">
       <img src="${p.img}" alt="${p.name}" loading="lazy" width="600" height="400" />
       <div class="product-info">
@@ -59,8 +54,16 @@ function renderProducts(filter = "all") {
         <p class="product-price">Price on WhatsApp</p>
         <span class="btn btn-quiet">View &amp; enquire</span>
       </div>
-    </a>
-  `).join("");
+    </a>`;
+}
+
+function renderProducts(filter = "all") {
+  const grid = document.getElementById("product-grid");
+  if (!grid) return;
+
+  const filtered = filter === "all" ? products : products.filter(p => p.category === filter);
+
+  grid.innerHTML = filtered.map(productCard).join("");
 
   const count = document.getElementById("results-count");
   if (count) {
@@ -123,6 +126,10 @@ function renderProductDetail() {
 
   document.title = product.name + " — Kiku Studio";
 
+  const sameCategory = products.filter(q => q.id !== product.id && q.category === product.category);
+  const others = products.filter(q => q.id !== product.id && q.category !== product.category);
+  const picks = [...sameCategory, ...others].slice(0, 3);
+
   container.innerHTML = `
     <div class="product-detail-image">
       <img src="${product.img}" alt="${product.name}" loading="lazy" width="600" height="400" />
@@ -164,6 +171,12 @@ function renderProductDetail() {
         </div>
         <button type="submit" class="btn">Send Enquiry</button>
       </form>
+    </div>
+    <div class="related-products">
+      <h2>More from the workshop</h2>
+      <div class="product-grid">
+        ${picks.map(productCard).join("")}
+      </div>
     </div>
   `;
 }
