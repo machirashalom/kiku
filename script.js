@@ -97,7 +97,9 @@ function applyURLFilter() {
   const cat = params.get("cat");
   if (cat) {
     document.querySelectorAll(".filter-btn").forEach(b => {
-      b.classList.toggle("active", b.dataset.filter === cat);
+      const on = b.dataset.filter === cat;
+      b.classList.toggle("active", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
     });
     renderProducts(cat);
   } else {
