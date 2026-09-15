@@ -2,6 +2,8 @@
    Kiku Studio — Handmade Mvule & Mahogany furniture, Nairobi
    Design system: warm timber & brass on cream, editorial serif
    display, hairline "joinery" details. No template chrome.
+   Ground + type follow the "Straight off the bench" tokens
+   (papyrus/ink/upholstery/mvule/shaving; Zilla Slab + Archivo).
    ============================================================ */
 
 :root {
@@ -10,19 +12,24 @@
   --brass: #a8741a;
   --brass-soft: rgba(168, 116, 26, 0.13);
   --brass-bright: #d9a441;
-  --ink: #33281c;
+  /* "Straight off the bench" tokens (Next.js rewrite spec, exact values) */
+  --papyrus: #EFEDE6;
+  --ink: #201913;
+  --upholstery: #2C3F57;
+  --mvule: #C08A4E;
+  --shaving: #D9CFC0;
   --muted: #6a5748;
-  --cream: #faf6ef;
+  --cream: #EFEDE6;
   --parchment: #f1e8d9;
   --paper: #ffffff;
   --bark: #241b12;
   --bark-2: #2f2518;
-  --line: rgba(51, 40, 28, 0.14);
-  --line-strong: rgba(51, 40, 28, 0.26);
+  --line: rgba(32, 25, 19, 0.14);
+  --line-strong: rgba(32, 25, 19, 0.26);
   --wa: #25d366;
   --wa-deep: #1ebe57;
-  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --font-sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Zilla Slab', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --radius: 10px;
   --radius-sm: 6px;
   --radius-pill: 999px;
