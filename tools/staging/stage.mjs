@@ -12,6 +12,8 @@
 //   compose --product <cutout> --bg <bg> --out <final.png> [opts]
 //   stage <photo> <bg> <out-base> [opts]    full pipeline -> <base>_studio.jpg + <base>_plain.jpg
 //                                     (or --cutout <png> to skip removal)
+//   separate <photo> <out-base> [opts]  split distinct pieces -> per-piece PNG + plain JPG
+//                                     (visible pixels only; hidden parts stay holes)
 //   help
 //
 // compose/stage options:
@@ -22,7 +24,7 @@
 //   --shadow-dy 0.03  shadow drop as fraction of background height
 //   --quality 82    JPEG quality for stage exports
 
-import { readFile, writeFile, unlink } from 'node:fs/promises';
+import { readFile, writeFile, unlink, mkdir, rm } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
@@ -46,6 +48,12 @@ function opts(list, defaults) {
 function fail(msg) {
   console.error('STAGE FAILED: ' + msg);
   process.exit(1);
+}
+
+function shortErr(e) {
+  const raw = String((e && e.stderr) || (e && e.message) || e);
+  const hit = raw.split('\n').filter(l => /SEG_FAILED|ML cutout failed|Error/i.test(l)).slice(0, 2).join(' ').trim();
+  return hit || 'unknown error';
 }
 
 /**
@@ -266,8 +274,7 @@ async function validateUnchanged(composedPng, scaledCutout, x, y, w, h) {
   return { pass: maxDiff === 0 && checked > 0, maxDiff, checked, fringe };
 }
 
-/** Plain listing image: product on flat cream, no staging, no shadow. */
-async function plainListing(scaledCutoutBuffer, outPath) {
+/** Plain listing image: product on flat cream, no staging, no shadow. */async function plainListing(scaledCutoutBuffer, outPath) {
   const m = await sharp(scaledCutoutBuffer).metadata();
   const pad = Math.round(Math.max(m.width, m.height) * 0.12);
   const W = m.width + pad * 2, H = m.height + pad * 2;
@@ -277,6 +284,158 @@ async function plainListing(scaledCutoutBuffer, outPath) {
     .jpeg({ quality: 84, mozjpeg: true });
   const { info, finalPath } = await saveSharp(flat, outPath);
   return { outPath: finalPath, ...info };
+}
+
+/**
+ * Separate distinct furniture pieces in one photo into individual cutouts.
+ * Honesty contract: only VISIBLE pixels are ever assigned to a piece.
+ * Anything hidden behind another piece stays transparent (a hole) — never
+ * inpainted, never invented. Edge-cropped or heavily overlapping pieces are
+ * flagged for a solo re-shoot instead of being faked complete.
+ */
+async function separatePieces(photoPath, outBase, o) {
+  const stamp = Date.now();
+  const normPath = path.join(os.tmpdir(), `kiku-norm-${stamp}.jpg`);
+  const segDir = path.join(os.tmpdir(), `kiku-seg-${stamp}`);
+
+  console.log('Step 1/4: normalizing photo...');
+  await sharp(photoPath).rotate().jpeg({ quality: 92 }).toFile(normPath);
+  const norm = sharp(normPath);
+  const { data: rgb, info } = await norm.clone().removeAlpha().raw().toBuffer({ resolveWithObject: true });
+  const W = info.width, H = info.height;
+
+  console.log('Step 2/4: foreground mask...');
+  const cutout = await removeBg(normPath, { engine: 'ml', 'ml-model': o['ml-model'] });
+  const { data: fgAlpha } = await sharp(cutout).extractChannel('alpha').raw().toBuffer({ resolveWithObject: true });
+
+  console.log('Step 3/4: identifying pieces...');
+  try {
+    execFileSync(process.execPath,
+      [path.join(import.meta.dirname, 'yolo-seg.mjs'), normPath, segDir, '--conf', String(o.conf)],
+      { stdio: 'pipe', timeout: 600000 });
+  } catch (e) {
+    fail('piece detection failed. ' + shortErr(e));
+  }
+  const seg = JSON.parse(await readFile(path.join(segDir, 'instances.json'), 'utf8'));
+  const normLabel = s => String(s).trim().toLowerCase().replace(/\s+/g, '-');
+  const allowed = new Set(String(o.classes).split(',').map(normLabel));
+  const seen = [...new Set(seg.instances.map(i => i.label))];
+  const kept = seg.instances.filter(i => allowed.has(normLabel(i.label)));
+  if (!kept.length) {
+    fail(`no furniture pieces found (saw: ${seen.join(', ') || 'nothing'}). Try --classes to include other labels.`);
+  }
+  const grids = [];
+  for (const inst of kept) {
+    const raw = await readFile(path.join(segDir, `prob-${inst.id}.bin`));
+    grids.push(new Float32Array(raw.buffer, raw.byteOffset, raw.length / 4));
+  }
+
+  console.log('Step 4/4: splitting pieces (holes stay holes)...');
+  const P = seg.proto, S = seg.letterbox;
+  const sample = (g, x, y) => {
+    const lx = x * seg.scale + seg.padL, ly = y * seg.scale + seg.padT;
+    let gx = (lx / S) * P - 0.5, gy = (ly / S) * P - 0.5;
+    if (gx < 0) gx = 0; if (gy < 0) gy = 0;
+    if (gx > P - 1.001) gx = P - 1.001; if (gy > P - 1.001) gy = P - 1.001;
+    const x0 = Math.floor(gx), y0 = Math.floor(gy);
+    const fx = gx - x0, fy = gy - y0, i00 = y0 * P + x0;
+    return (g[i00] * (1 - fx) + g[i00 + 1] * fx) * (1 - fy) +
+           (g[i00 + P] * (1 - fx) + g[i00 + P + 1] * fx) * fy;
+  };
+  const N = kept.length;
+  const alphas = kept.map(() => Buffer.alloc(W * H));
+  const counts = new Array(N).fill(0);
+  const borderPx = new Array(N).fill(0);
+  const softPx = new Array(N).fill(0);
+  let dropped = 0;
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      const i = y * W + x;
+      const fg = fgAlpha[i];
+      let best = -1, bestP = fg >= 128 ? 0.35 : 0.6;
+      for (let k = 0; k < N; k++) {
+        const p = sample(grids[k], x, y);
+        if (p > bestP) { bestP = p; best = k; }
+      }
+      if (best < 0) { if (fg >= 128) dropped++; continue; }
+      // Crisp alpha where the foreground mask agrees; soft detection-grid
+      // alpha where the mask missed but YOLO is confident. RGB is original
+      // in both cases — only edge attribution differs.
+      const wgt = fg >= 128
+        ? Math.max(0, Math.min(1, (bestP - 0.35) / 0.3))
+        : Math.max(0, Math.min(1, (bestP - 0.6) / 0.25));
+      const a = fg >= 128 ? Math.round(fg * wgt) : Math.round(255 * wgt);
+      if (a === 0) { if (fg >= 128) dropped++; continue; }
+      alphas[best][i] = a;
+      counts[best]++;
+      if (fg < 128) softPx[best]++;
+      if (x === 0 || y === 0 || x === W - 1 || y === H - 1) borderPx[best]++;
+    }
+  }
+
+  const boxOverlap = (a, b) => {
+    const ix = Math.max(0, Math.min(a[0] + a[2], b[0] + b[2]) - Math.max(a[0], b[0]));
+    const iy = Math.max(0, Math.min(a[1] + a[3], b[1] + b[3]) - Math.max(a[1], b[1]));
+    const inter = ix * iy;
+    const ua = a[2] * a[3] + b[2] * b[3] - inter;
+    return ua <= 0 ? 0 : inter / ua;
+  };
+
+  const usedNames = new Set();
+  console.log(`\nPIECES (${N}):`);
+  for (let k = 0; k < N; k++) {
+    const inst = kept[k];
+    let name = `${inst.friendly}-1`, n = 1;
+    while (usedNames.has(name)) { n++; name = `${inst.friendly}-${n}`; }
+    usedNames.add(name);
+    let png = await sharp(rgb, { raw: { width: W, height: H, channels: 3 } })
+      .joinChannel(alphas[k], { raw: { width: W, height: H, channels: 1 } })
+      .png().toBuffer();
+    // trim empty transparent borders directly from the alpha buffer
+    // (small margin kept)
+    let minX = W, minY = H, maxX = -1, maxY = -1;
+    const ab = alphas[k];
+    for (let yy = 0; yy < H; yy++) {
+      for (let xx = 0; xx < W; xx++) {
+        if (ab[yy * W + xx] >= 12) {
+          if (xx < minX) minX = xx;
+          if (xx > maxX) maxX = xx;
+          if (yy < minY) minY = yy;
+          if (yy > maxY) maxY = yy;
+        }
+      }
+    }
+    if (maxX >= 0) {
+      const mg = Math.max(8, Math.round(Math.max(W, H) * 0.03));
+      const L = Math.max(0, minX - mg), T = Math.max(0, minY - mg);
+      const R = Math.min(W, maxX + 1 + mg), B = Math.min(H, maxY + 1 + mg);
+      if (R - L > 16 && B - T > 16) {
+        png = await sharp(png).extract({ left: L, top: T, width: R - L, height: B - T }).png().toBuffer();
+      }
+    }
+    const savedPng = await saveBuffer(png, `${outBase}_${name}.png`);
+    const plain = await plainListing(png, `${outBase}_${name}_plain.jpg`);
+    const frac = counts[k] / (W * H);
+    const bFrac = counts[k] ? borderPx[k] / counts[k] : 0;
+    const sFrac = counts[k] ? softPx[k] / counts[k] : 0;
+    const overlaps = [];
+    for (let j = 0; j < N; j++) {
+      if (j !== k && boxOverlap(inst.box, kept[j].box) > 0.03) overlaps.push(kept[j].friendly);
+    }
+    const notes = [];
+    if (bFrac > 0.005) notes.push('EDGE-CROPPED — re-shoot this piece solo');
+    if (overlaps.length) notes.push(`OVERLAPS ${[...new Set(overlaps)].join(', ')} — inspect the shared edge`);
+    if (frac < 0.01) notes.push('TINY FRAGMENT — verify before use');
+    if (sFrac > 0.3) notes.push('SOFT EDGES — foreground mask missed this piece, check the outline');
+    const verdict = notes.length ? notes.join(' · ') : 'OK';
+    console.log(`  ${name}  ${inst.label} conf ${inst.score}  ${(frac * 100).toFixed(1)}% of photo  ${verdict}`);
+    console.log(`    -> ${savedPng}`);
+    console.log(`    -> ${plain.outPath}`);
+  }
+  if (dropped > 0) console.log(`Unassigned foreground pixels left transparent: ${dropped}`);
+  console.log('SEPARATE OK — holes stay holes; review each piece before publishing.');
+  await rm(segDir, { recursive: true, force: true }).catch(() => {});
+  await unlink(normPath).catch(() => {});
 }
 
 async function main() {
@@ -314,8 +473,7 @@ async function main() {
     return;
   }
 
-  if (cmd === 'stage') {
-    const [photo, bg, base, ...rest] = args.slice(1);
+  if (cmd === 'stage') {    const [photo, bg, base, ...rest] = args.slice(1);
     if (!photo || !bg || !base) fail('usage: stage <photo> <bg> <out-base> [opts]');
     const o = opts(rest, {
       width: 0.62, bottom: 0.07, shadow: 0.35,
@@ -336,6 +494,14 @@ async function main() {
     console.log(`Studio image: ${sFinal} (${sMeta.width}x${sMeta.height})`);
     console.log(`Plain listing: ${plain.outPath} (${plain.width}x${plain.height})`);
     console.log('STAGE OK — product unaltered, outputs ready for review.');
+    return;
+  }
+
+  if (cmd === 'separate') {
+    const [photo, outBase, ...rest] = args.slice(1);
+    if (!photo || !outBase) fail('usage: separate <photo> <out-base> [--conf 0.35 --classes chair,couch,bed,dining-table]');
+    const o = opts(rest, { conf: 0.35, classes: 'chair,couch,bed,dining-table', 'ml-model': 'small' });
+    await separatePieces(photo, outBase, o);
     return;
   }
 

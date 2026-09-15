@@ -34,7 +34,10 @@ cutout with `--cutout` (phone background-eraser apps and Photoshop both work).
 # 1. Full pipeline: photo + background -> staged + plain listing images
 node stage.mjs stage <product-photo.jpg> <background.jpg> <output-base> [options]
 
-# 2. Individual steps
+# 2. Separate distinct pieces in one photo -> per-piece PNG + plain JPG
+node stage.mjs separate <group-photo.jpg> <output-base> [--conf 0.35 --classes chair,couch,bed,dining-table]
+
+# 3. Individual steps
 node stage.mjs remove-bg <product-photo.jpg> <cutout.png>
 node stage.mjs studio-bg <backdrop.jpg> [--w 1600 --h 1000]
 node stage.mjs compose --product <cutout.png> --bg <bg.jpg> --out <final.png> [options]
@@ -43,6 +46,19 @@ node stage.mjs compose --product <cutout.png> --bg <bg.jpg> --out <final.png> [o
 Options: `--width 0.62` (product width fraction), `--bottom 0.07`
 (floor margin fraction), `--shadow 0.35` (0 disables), `--shadow-blur 22`,
 `--shadow-dy 0.03`, `--quality 82`.
+
+## Separating pieces from a group photo
+
+`separate` identifies each sofa, chair, stool, bed, and table and writes one
+transparent PNG plus one plain listing JPG per piece. Rules it enforces:
+
+- Only **visible** pixels are assigned. Anything hidden behind another piece
+  stays transparent — a hole, never invented wood or fabric.
+- Each piece gets a verdict: `OK`, `OVERLAPS …` (inspect the shared edge),
+  `EDGE-CROPPED` (re-shoot that piece solo), `TINY FRAGMENT` (verify), or
+  `SOFT EDGES` (detection-grid outline — zoom in and check).
+- A piece flagged anything but OK needs a solo photo for its listing; the
+  separated PNG is a preview, not a publishable product shot.
 
 ## Workflow
 

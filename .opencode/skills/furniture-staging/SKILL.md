@@ -47,3 +47,17 @@ first if dependencies are missing.
    and right and detail close-ups for best angle matching.
 9. Report filenames, dimensions, and the validation result. Remind the user
    to eyeball the final image against the real piece before publishing.
+
+## Separating pieces from a group photo
+
+Use `node tools/staging/stage.mjs separate <photo> <out-base>` when one
+photo holds several pieces. The tool writes one transparent PNG plus one
+plain listing JPG per detected piece and prints a verdict per piece.
+
+1. Only visible pixels are ever assigned. Hidden parts stay transparent
+   holes — never inpainted, never invented.
+2. Respect every verdict: `OK` may be used; `OVERLAPS` needs edge
+   inspection; `EDGE-CROPPED`, `TINY FRAGMENT`, and severe `SOFT EDGES`
+   mean re-shoot that piece solo for its listing.
+3. Never present a separated PNG with holes or ragged shared edges as a
+   finished product shot. It is a preview until the user approves it.

@@ -1,2 +1,7 @@
 # Local tooling (never commit dependencies)
 tools/*/node_modules/
+# Downloaded ML models (auto-fetched on first run)
+tools/staging/models/
+# Local secrets (API keys) — never commit
+.env
+.env.*
